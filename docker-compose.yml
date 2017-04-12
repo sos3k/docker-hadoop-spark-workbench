@@ -1,7 +1,7 @@
 version: '2' 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:1.0.0
+    image: bde2020/hadoop-namenode:1.1.0-hadoop2.7.1-java8
     hostname: namenode
     container_name: namenode
     domainname: hadoop
@@ -18,7 +18,7 @@ services:
       - "8020:8020"
 
   datanode1:
-    image: bde2020/hadoop-datanode:1.0.0
+    image: bde2020/hadoop-datanode:1.1.0-hadoop2.7.1-java8
     hostname: datanode1
     container_name: datanode1
     domainname: hadoop
@@ -30,7 +30,7 @@ services:
       - ./hadoop.env
 
   datanode2:
-    image: bde2020/hadoop-datanode:1.0.0
+    image: bde2020/hadoop-datanode:1.1.0-hadoop2.7.1-java8
     hostname: datanode2
     container_name: datanode2
     domainname: hadoop
@@ -42,7 +42,7 @@ services:
       - ./hadoop.env
 
   spark-master:
-    image: earthquakesan/hadoop-spark-master:1.0.0
+    image: earthquakesan/hadoop-spark-master
     hostname: spark-master
     container_name: spark-master
     domainname: hadoop
@@ -61,7 +61,7 @@ services:
         - "7077:7077"
 
   spark-worker:
-    image: earthquakesan/hadoop-spark-worker:1.0.0
+    image: earthquakesan/hadoop-spark-worker
     hostname: spark-worker
     domainname: hadoop
     networks: 
@@ -77,7 +77,7 @@ services:
       - ./hadoop.env
 
   spark-notebook:
-    image: earthquakesan/hadoop-spark-notebook:1.0.0
+    image: earthquakesan/hadoop-spark-notebook:2.0.0-hadoop2.7-hive-java8
     hostname: sparknotebook
     container_name: sparknotebook
     domainname: hadoop
@@ -101,6 +101,19 @@ services:
       - NAMENODE_HOST=namenode
     ports:
       - "8088:8088"
+
+  hive:
+    image: bde2020/hive
+    container_name: hive
+    networks: 
+      - hadoop
+    env_file:
+      - ./hadoop.env
+    volumes:
+      - ./data/hive-metastore:/hive-metastore
+    ports:
+      - "10000:10000"
+      - "10002:10002"
 
 networks:
   hadoop:
