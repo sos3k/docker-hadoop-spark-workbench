@@ -1,7 +1,7 @@
-version: '3' 
+version: '2' 
 services:
   namenode:
-    image: bde2020/hadoop-namenode:1.1.0-hadoop2.7.1-java8
+    image: bde2020/hadoop-namenode  
     hostname: namenode
     container_name: namenode
     domainname: hadoop
@@ -19,7 +19,7 @@ services:
       - "8020:8020"
 
   datanode1:
-    image: bde2020/hadoop-datanode:1.1.0-hadoop2.7.1-java8
+    image: bde2020/hadoop-datanode
     hostname: datanode1
     container_name: datanode1
     domainname: hadoop
@@ -32,7 +32,7 @@ services:
       - ./hadoop.env
 
   datanode2:
-    image: bde2020/hadoop-datanode:1.1.0-hadoop2.7.1-java8
+    image: bde2020/hadoop-datanode
     hostname: datanode2
     container_name: datanode2
     domainname: hadoop
@@ -80,7 +80,7 @@ services:
       - ./hadoop.env
 
   spark-notebook:
-    image: sos3k/hadoop-spark-notebook
+    image: sos3k/spark-notebook
     hostname: sparknotebook
     container_name: sparknotebook
     domainname: hadoop
