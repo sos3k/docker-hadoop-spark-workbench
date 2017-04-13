@@ -5,6 +5,7 @@ services:
     hostname: namenode
     container_name: namenode
     domainname: hadoop
+    privileged: true
     networks:
       - hadoop
     volumes:
@@ -22,6 +23,7 @@ services:
     hostname: datanode1
     container_name: datanode1
     domainname: hadoop
+    privileged: true
     networks:
       - hadoop
     volumes:
@@ -34,6 +36,7 @@ services:
     hostname: datanode2
     container_name: datanode2
     domainname: hadoop
+    privileged: true
     networks: 
       - hadoop
     volumes:
@@ -109,6 +112,7 @@ services:
       - hadoop
     env_file:
       - ./hadoop.env
+    privileged: true
     volumes:
       - ./data/hive-metastore:/hive-metastore
     ports:
