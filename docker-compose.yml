@@ -1,4 +1,4 @@
-version: '2' 
+version: '3' 
 services:
   namenode:
     image: bde2020/hadoop-namenode:1.1.0-hadoop2.7.1-java8
@@ -45,7 +45,7 @@ services:
       - ./hadoop.env
 
   spark-master:
-    image: earthquakesan/hadoop-spark-master
+    image: sos3k/hadoop-spark-master
     hostname: spark-master
     container_name: spark-master
     domainname: hadoop
@@ -64,7 +64,7 @@ services:
         - "7077:7077"
 
   spark-worker:
-    image: earthquakesan/hadoop-spark-worker
+    image: sos3k/hadoop-spark-worker
     hostname: spark-worker
     domainname: hadoop
     networks: 
@@ -80,7 +80,7 @@ services:
       - ./hadoop.env
 
   spark-notebook:
-    image: earthquakesan/hadoop-spark-notebook:2.0.0-hadoop2.7-hive-java8
+    image: sos3k/hadoop-spark-notebook
     hostname: sparknotebook
     container_name: sparknotebook
     domainname: hadoop
